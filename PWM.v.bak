@@ -1,0 +1,6 @@
+module PWM_counter
+input clock;
+output count;
+
+always @(posedge clock)
+count=count+1;
