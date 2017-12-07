@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE115F29C7
-set_global_assignment -name TOP_LEVEL_ENTITY Avalon_PMW
+set_global_assignment -name TOP_LEVEL_ENTITY "PWM_media _computer"
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:12:46  NOVEMBER 10, 2017"
 set_global_assignment -name LAST_QUARTUS_VERSION 16.0.0
@@ -577,9 +577,8 @@ set_location_assignment PIN_E10 -to EXT_IO[5]
 set_location_assignment PIN_D9 -to EXT_IO[6]
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VERILOG_FILE PWM.v
-set_global_assignment -name VERILOG_FILE PWM_Clock_divider.v
-set_global_assignment -name VERILOG_FILE Avalon_PMW.v
+set_global_assignment -name BDF_FILE "PWM_media _computer.bdf"
+set_global_assignment -name QIP_FILE "../DE2-115_Media_Computer/verilog/nios_system/synthesis/nios_system.qip"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
