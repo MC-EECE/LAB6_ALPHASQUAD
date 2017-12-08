@@ -20,7 +20,7 @@ wire pwm_out;
 assign coe_pwm_out = pwm_out & enable;
 assign avs_s0_readdata = read_data;
 
-PWM_counter PWM0(
+PWM PWM0(
 	.clk (csi_clk), .rst_n (rsi_rst_n), .pulse_period (period),
 	.pulse_width (pulse_width), .pwm (pwm_out)
 	);
@@ -33,13 +33,15 @@ assign read_pulse_width = avs_s0_chip_select & avs_s0_read & (avs_s0_address == 
 assign read_period = avs_s0_chip_select & avs_s0_read & (avs_s0_address == 1);
 assign read_enable = avs_s0_chip_select & avs_s0_read & (avs_s0_address == 2);
 
-always @ (posedge csi_clk) begin
+always @ (posedge csi_clk or negedge rsi_rst_n ) 
+begin
 if (rsi_rst_n == 0) begin
 	pulse_width <= 250000; 
 	period <= 500000; 
-	enable <= 1;
+	enable <= 0;
 end
 else
+begin
  if (load_pulse_width == 1) begin
 	if  (avs_s0_byteenable[0] == 1) begin
 		pulse_width[7:0] <=avs_s0_writedata[7:0];
@@ -53,8 +55,8 @@ else
 	if  (avs_s0_byteenable[3] == 1) begin
 		pulse_width[31:24] <=avs_s0_writedata[31:24];
 		end 
-	end
-if (read_pulse_width ==1) begin
+end
+if (read_pulse_width == 1) begin
 	read_data <=pulse_width;
 end
 
@@ -82,6 +84,7 @@ if (load_enable== 1) begin
 end
 if (enable ==1) begin
 	read_data <=enable;
+end
 end
 end
 endmodule
