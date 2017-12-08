@@ -323,7 +323,6 @@ wire [8:0] leds_green;
  *****************************************************************************/
 
 // Output Assignments
-assign GPIO[ 0]		= 1'bZ;
 assign GPIO[ 2]		= 1'bZ;
 assign GPIO[16]		= 1'bZ;
 assign GPIO[18]		= 1'bZ;
